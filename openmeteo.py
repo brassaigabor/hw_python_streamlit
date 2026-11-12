@@ -120,10 +120,18 @@ def draw_chart(location, weather_data):
                         x="time",
                         y=column,
                         title=f"{location['name']}, {location['country']} - {name }",
-                        labels={column: f"{name} ({hourly_unit})", "time":"Time"}
+                        labels={column: f"{name} ({hourly_unit})", "time":"Time"},
+                        height=250
                         )
-
-            st.plotly_chart(fig, config={"staticPlot": True}, use_container_width=True)
+            fig.update_layout(hovermode="x unified", dragmode=False)
+            st.plotly_chart(
+                fig, 
+                config = {
+                    "scrollZoom": False,
+                    "displayModeBar": False,
+                    "doubleClick": False
+                },
+                use_container_width=True)
 
 # ------------------- main -----------------------
 def main():
